@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Juego Ahorcado</title>
+    </h:head>
+    <h:body>
+        <p:panel id="pnlJuegoAhorcado" header="Juego Ahorcado" footer="Escuela de Minas">
+            <h:form id="frmJuegoAhorcado" >
+                <p:messages id="mensajes" showDetail="true" />
+                <p:panelGrid id="gridJuego" columns="4" >
+                    <p:dataGrid id="gridPalabra" columns="10" var="palabra"
+                                emptyMessage="Ingrese una palabra" value="#{juegoFormBean.juegoAhorcado.palabraAhorcadoFormat}" >
+                        <p:panelGrid columns="1" >
+                            <p:outputLabel value="#{palabra}" />
+                        </p:panelGrid>                        
+                  
+                    </p:dataGrid> 
+                    <p:outputLabel value="palabra: " />
+                    <p:password id="txtPalabraParaAdivinar" required="true" maxlength="10" size="12" disabled="#{juegoFormBean.componenteDeshabilitado}"
+                                value="#{juegoFormBean.palabraIngresada}"/>
+                    <p:commandButton value="Jugar" disabled="#{juegoFormBean.componenteDeshabilitado}" update="frmJuegoAhorcado" actionListener="#{juegoFormBean.empezarJuego()}" />
+                    <p:panelGrid columns="3" >
+                        <p:outputLabel value="Letra"/>
+                        <p:inputText id="txtCaracterIngresado" maxlength="1" required="true" size="1" disabled="#{juegoFormBean.componenteDeshabilitado eq false}" value="#{juegoFormBean.letraIngresada}"/>
+                        <p:commandButton value="OK" disabled="#{juegoFormBean.componenteDeshabilitado eq false}" update="frmJuegoAhorcado" actionListener="#{juegoFormBean.controlarLetra()}"/>
+                                                  
+                        
+                    </p:panelGrid>
+                    <p:outputLabel value="intento:"/>
+                    <p:outputLabel value="#{juegoFormBean.juegoAhorcado.intentos}"/>
+                                
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+
